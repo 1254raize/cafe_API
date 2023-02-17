@@ -1,0 +1,42 @@
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block content %}
+
+{% include 'header.html' %}
+
+<main>
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <div class="container-fluid flash-body">
+
+        {% for message in messages %}
+        <p class="flashes mx-auto">{{ message }}</p>
+        {% endfor %}
+
+    </div>
+    {% endif %}
+    {% endwith %}
+</main>
+
+<main>
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <div class="container-fluid flash-body">
+
+        {% for message in messages %}
+        <p class="flashes mx-auto">{{ message }}</p>
+        {% endfor %}
+
+    </div>
+    {% endif %}
+    {% endwith %}
+</main>
+
+<body>
+<div class="container-body form-body mx-auto">
+    <h1>Add Cafe</h1>
+    {{ wtf.quick_form(form, novalidate=True, button_map={'submit': 'primary'}) }}
+</div>
+</body>
+
+{% endblock %}

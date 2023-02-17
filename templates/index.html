@@ -1,0 +1,45 @@
+{% include 'header.html' %}
+
+<main>
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <div class="container-fluid flash-body">
+
+        {% for message in messages %}
+        <p class="flashes mx-auto">{{ message }}</p>
+        {% endfor %}
+
+    </div>
+    {% endif %}
+    {% endwith %}
+</main>
+
+<div class="grid-container">
+
+  {% for cafe in cafes %}
+<div class="card img-card grid-item1" style="width: 18rem;">
+  <img src={{cafe[3]}} class="card-img" alt="...">
+  <div class="card-body">
+    <h5 class="card-title">{{cafe[1]}}</h5>
+    <p class="card-text">{{cafe[4]}}</p>
+    {% if cafe[5] == 1 %}
+    <i class="fa-solid fa-plug"></i>
+    {% endif %}
+    {% if cafe[6] == 1 %}
+    <i class="fa-solid fa-toilet"></i>
+    {% endif %}
+    {% if cafe[7] == 1 %}
+    <i class="fa-solid fa-wifi"></i>
+    {% endif %}
+    {% if cafe[8] == 1 %}
+    <i class="fa-solid fa-phone"></i>
+    {% endif %}
+    <p>Coffee price: {{cafe[10]}}</p>
+    <p>Number of seats: {{cafe[9]}}</p>
+    <br>
+    <a href="{{cafe[2]}}" class="btn btn-primary">Go to map</a> <span class="span-space"></span> <a href="{{ url_for('delete_cafe', cafe_id = cafe.id) }}"><i class="fa-solid fa-trash"></i></a>
+  </div>
+</div>
+{% endfor %}
+
+</div>
